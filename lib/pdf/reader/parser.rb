@@ -136,7 +136,7 @@ class PDF::Reader
 
       loop do
         token = @buffer.token
-        break if token == ">"
+        break if token == ">" or not token
         str << token
       end
 
