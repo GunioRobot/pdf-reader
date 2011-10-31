@@ -74,15 +74,15 @@ context "The PDF::Reader::Encoding::IdentityH class" do
       {:expert => "\x22",             :utf8 => ""},
       {:expert => "\x22\xF7",         :utf8 => [0x25AF].pack("U*")},
       {:expert => "\x22\xF7\x22\xF7", :utf8 => [0x25AF,0x25AF].pack("U*")}
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:expert])
 
       if RUBY_VERSION >= "1.9"
         result.encoding.to_s.should eql("UTF-8")
         vals[:utf8].force_encoding("UTF-8")
       end
-      
-      result.should eql(vals[:utf8]) 
+
+      result.should eql(vals[:utf8])
     end
   end
 
@@ -91,7 +91,7 @@ context "The PDF::Reader::Encoding::IdentityH class" do
     cmap = PDF::Reader::CMap.new("")
     cmap.instance_variable_set("@map",{1 => 0x20AC, 2 => 0x0031})
     result = e.to_utf8("\x00\x01\x00\x02", cmap)
-    
+
     result.should eql("€1")
 
     if RUBY_VERSION >= "1.9"
@@ -110,7 +110,7 @@ context "The PDF::Reader::Encoding::MacExpertEncoding class" do
       {:expert => "\x62", :utf8 => [0xF762].pack("U*")},
       {:expert => "\xBE", :utf8 => [0xF7E6].pack("U*")},
       {:expert => "\xF7", :utf8 => [0xF6EF].pack("U*")}
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:expert])
 
       if RUBY_VERSION >= "1.9"
@@ -118,7 +118,7 @@ context "The PDF::Reader::Encoding::MacExpertEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
+      result.should eql(vals[:utf8])
     end
   end
 
@@ -127,8 +127,8 @@ context "The PDF::Reader::Encoding::MacExpertEncoding class" do
     e.differences = [0xEE, :A]
     [
       {:mac => "\x22\xEE", :utf8 => [0xF6F8, 0x41].pack("U*")}
-    ].each do |vals| 
-      
+    ].each do |vals|
+
       result = e.to_utf8(vals[:mac])
 
       if RUBY_VERSION >= "1.9"
@@ -136,8 +136,8 @@ context "The PDF::Reader::Encoding::MacExpertEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
     end
   end
 
@@ -146,13 +146,13 @@ context "The PDF::Reader::Encoding::MacExpertEncoding class" do
     cmap = PDF::Reader::CMap.new("")
     cmap.instance_variable_set("@map",{1 => 0x20AC, 2 => 0x0031})
     result = e.to_utf8("\x01\x02", cmap)
-    
+
     result.should eql("€1")
 
     if RUBY_VERSION >= "1.9"
       result.encoding.to_s.should eql("UTF-8")
     end
-      
+
   end
 end
 
@@ -169,10 +169,10 @@ context "The PDF::Reader::Encoding::MacRomanEncoding class" do
       {:mac => "\xD8", :utf8 => "\xC3\xBF"},     # ÿ sign
       {:mac => "\xE4", :utf8 => "\xE2\x80\xB0"}, # ‰  sign
       {:mac => "\xFD", :utf8 => "\xCB\x9D"}      # ˝ sign
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:mac])
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
       if RUBY_VERSION >= "1.9"
         result.encoding.to_s.should eql("UTF-8")
       end
@@ -184,8 +184,8 @@ context "The PDF::Reader::Encoding::MacRomanEncoding class" do
     e.differences = [0xEE, :A]
     [
       {:mac => "\x24\xEE", :utf8 => [0x24, 0x41].pack("U*")}, # dollar sign, A
-    ].each do |vals| 
-      
+    ].each do |vals|
+
       result = e.to_utf8(vals[:mac])
 
       if RUBY_VERSION >= "1.9"
@@ -193,8 +193,8 @@ context "The PDF::Reader::Encoding::MacRomanEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
     end
   end
 
@@ -203,13 +203,13 @@ context "The PDF::Reader::Encoding::MacRomanEncoding class" do
     cmap = PDF::Reader::CMap.new("")
     cmap.instance_variable_set("@map",{1 => 0x20AC, 2 => 0x0031})
     result = e.to_utf8("\x01\x02", cmap)
-    
+
     result.should eql("€1")
 
     if RUBY_VERSION >= "1.9"
       result.encoding.to_s.should eql("UTF-8")
     end
-      
+
   end
 end
 
@@ -222,7 +222,7 @@ context "The PDF::Reader::Encoding::PDFDocEncoding class" do
       {:pdf => "\x62", :utf8 => [0x62].pack("U*")},
       {:pdf => "\xA0", :utf8 => [0x20AC].pack("U*")},
       {:pdf => "\x94", :utf8 => [0xFB02].pack("U*")}
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:pdf])
 
       if RUBY_VERSION >= "1.9"
@@ -230,7 +230,7 @@ context "The PDF::Reader::Encoding::PDFDocEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
+      result.should eql(vals[:utf8])
     end
   end
 
@@ -239,8 +239,8 @@ context "The PDF::Reader::Encoding::PDFDocEncoding class" do
     e.differences = [0xEE, :A]
     [
       {:pdf => "\x22\xEE", :utf8 => [0x22, 0x41].pack("U*")}
-    ].each do |vals| 
-      
+    ].each do |vals|
+
       result = e.to_utf8(vals[:pdf])
 
       if RUBY_VERSION >= "1.9"
@@ -248,8 +248,8 @@ context "The PDF::Reader::Encoding::PDFDocEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
     end
   end
 
@@ -258,13 +258,13 @@ context "The PDF::Reader::Encoding::PDFDocEncoding class" do
     cmap = PDF::Reader::CMap.new("")
     cmap.instance_variable_set("@map",{1 => 0x20AC, 2 => 0x0031})
     result = e.to_utf8("\x01\x02", cmap)
-    
+
     result.should eql("€1")
 
     if RUBY_VERSION >= "1.9"
       result.encoding.to_s.should eql("UTF-8")
     end
-      
+
   end
 end
 
@@ -280,7 +280,7 @@ context "The PDF::Reader::Encoding::StandardEncoding class" do
       {:standard => "\xA4", :utf8 => [0x2044].pack("U*")}, # fraction sign
       {:standard => "\xBD", :utf8 => [0x2030].pack("U*")}, # per mile sign
       {:standard => "\xFA", :utf8 => [0x0153].pack("U*")}
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:standard])
 
       if RUBY_VERSION >= "1.9"
@@ -288,8 +288,8 @@ context "The PDF::Reader::Encoding::StandardEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
     end
   end
 
@@ -298,8 +298,8 @@ context "The PDF::Reader::Encoding::StandardEncoding class" do
     e.differences = [0xEE, :A]
     [
       {:std => "\x60\xEE", :utf8 => [0x2018, 0x41].pack("U*")}, # ", A
-    ].each do |vals| 
-      
+    ].each do |vals|
+
       result = e.to_utf8(vals[:std])
 
       if RUBY_VERSION >= "1.9"
@@ -307,8 +307,8 @@ context "The PDF::Reader::Encoding::StandardEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
     end
   end
 
@@ -317,13 +317,13 @@ context "The PDF::Reader::Encoding::StandardEncoding class" do
     cmap = PDF::Reader::CMap.new("")
     cmap.instance_variable_set("@map",{1 => 0x20AC, 2 => 0x0031})
     result = e.to_utf8("\x01\x02", cmap)
-    
+
     result.should eql("€1")
 
     if RUBY_VERSION >= "1.9"
       result.encoding.to_s.should eql("UTF-8")
     end
-      
+
   end
 end
 
@@ -337,7 +337,7 @@ context "The PDF::Reader::Encoding::SymbolEncoding class" do
       {:symbol => "\x47", :utf8 => [0x0393].pack("U*")}, # gamma
       {:symbol => "123",  :utf8 => "123"},
       {:symbol => "\xA0", :utf8 => [0x20AC].pack("U*")}, # € sign
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:symbol])
 
       if RUBY_VERSION >= "1.9"
@@ -345,8 +345,8 @@ context "The PDF::Reader::Encoding::SymbolEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
     end
   end
 
@@ -355,8 +355,8 @@ context "The PDF::Reader::Encoding::SymbolEncoding class" do
     e.differences = [0xEE, :A]
     [
       {:symbol => "\x41\xEE", :utf8 => [0x0391, 0x41].pack("U*")}, # alpha, A
-    ].each do |vals| 
-      
+    ].each do |vals|
+
       result = e.to_utf8(vals[:symbol])
 
       if RUBY_VERSION >= "1.9"
@@ -364,8 +364,8 @@ context "The PDF::Reader::Encoding::SymbolEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
     end
   end
 
@@ -374,13 +374,13 @@ context "The PDF::Reader::Encoding::SymbolEncoding class" do
     cmap = PDF::Reader::CMap.new("")
     cmap.instance_variable_set("@map",{1 => 0x20AC, 2 => 0x0031})
     result = e.to_utf8("\x01\x02", cmap)
-    
+
     result.should eql("€1")
 
     if RUBY_VERSION >= "1.9"
       result.encoding.to_s.should eql("UTF-8")
     end
-      
+
   end
 end
 
@@ -397,16 +397,16 @@ context "The PDF::Reader::Encoding::WinAnsiEncoding class" do
       {:win => "\x82", :utf8 => "\xE2\x80\x9A"}, # ‚ sign
       {:win => "\x83", :utf8 => "\xC6\x92"},     # ƒ sign
       {:win => "\x9F", :utf8 => "\xC5\xB8"}      # Ÿ sign
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:win])
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
       if RUBY_VERSION >= "1.9"
         result.encoding.to_s.should eql("UTF-8")
       end
     end
   end
-  
+
   specify "should correctly convert various win-1252 strings when a differences table is specified" do
     e = PDF::Reader::Encoding.new(:WinAnsiEncoding)
     e.differences = [0xEE, :A]
@@ -415,10 +415,10 @@ context "The PDF::Reader::Encoding::WinAnsiEncoding class" do
       {:win => "ABC", :utf8 => "ABC"},
       {:win => "123", :utf8 => "123"},
       {:win => "ABC\xEE", :utf8 => "ABCA"}
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:win])
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
       if RUBY_VERSION >= "1.9"
         result.encoding.to_s.should eql("UTF-8")
       end
@@ -430,13 +430,13 @@ context "The PDF::Reader::Encoding::WinAnsiEncoding class" do
     cmap = PDF::Reader::CMap.new("")
     cmap.instance_variable_set("@map",{1 => 0x20AC, 2 => 0x0031})
     result = e.to_utf8("\x01\x02", cmap)
-    
+
     result.should eql("€1")
 
     if RUBY_VERSION >= "1.9"
       result.encoding.to_s.should eql("UTF-8")
     end
-      
+
   end
 end
 
@@ -449,7 +449,7 @@ context "The PDF::Reader::Encoding::ZapfDingbatsEncoding class" do
       {:dingbats => "\x25", :utf8 => [0x260E].pack("U*")}, # telephone
       {:dingbats => "\xAB", :utf8 => [0x2660].pack("U*")}, # spades
       {:dingbats => "\xDE", :utf8 => [0x279E].pack("U*")}, # ->
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:dingbats])
 
       if RUBY_VERSION >= "1.9"
@@ -457,8 +457,8 @@ context "The PDF::Reader::Encoding::ZapfDingbatsEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
     end
   end
 
@@ -467,8 +467,8 @@ context "The PDF::Reader::Encoding::ZapfDingbatsEncoding class" do
     e.differences = [0xEE, :A]
     [
       {:dingbats => "\x22\xEE", :utf8 => [0x2702, 0x41].pack("U*")}, # scissors
-    ].each do |vals| 
-      
+    ].each do |vals|
+
       result = e.to_utf8(vals[:dingbats])
 
       if RUBY_VERSION >= "1.9"
@@ -476,8 +476,8 @@ context "The PDF::Reader::Encoding::ZapfDingbatsEncoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
-      
+      result.should eql(vals[:utf8])
+
     end
   end
 
@@ -486,13 +486,13 @@ context "The PDF::Reader::Encoding::ZapfDingbatsEncoding class" do
     cmap = PDF::Reader::CMap.new("")
     cmap.instance_variable_set("@map",{1 => 0x20AC, 2 => 0x0031})
     result = e.to_utf8("\x01\x02", cmap)
-    
+
     result.should eql("€1")
 
     if RUBY_VERSION >= "1.9"
       result.encoding.to_s.should eql("UTF-8")
     end
-      
+
   end
 end
 
@@ -505,7 +505,7 @@ context "The PDF::Reader::Encoding::UTF16Encoding class" do
       {:utf16 => "\x20\x22", :utf8 => [0x2022].pack("U*")},
       {:utf16 => "\x00\x41", :utf8 => [0x41].pack("U*")},
       {:utf16 => "\x20\x22", :utf8 => [0x2022].pack("U*")}
-    ].each do |vals| 
+    ].each do |vals|
       result = e.to_utf8(vals[:utf16])
 
       if RUBY_VERSION >= "1.9"
@@ -513,7 +513,7 @@ context "The PDF::Reader::Encoding::UTF16Encoding class" do
         vals[:utf8].force_encoding("UTF-8")
       end
 
-      result.should eql(vals[:utf8]) 
+      result.should eql(vals[:utf8])
     end
   end
 end

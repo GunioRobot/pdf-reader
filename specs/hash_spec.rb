@@ -107,7 +107,7 @@ context PDF::Hash, "each method" do
     h = PDF::Hash.new(filename)
 
     count = 0
-    h.each do 
+    h.each do
       count += 1
     end
     count.should eql(57)
@@ -131,7 +131,7 @@ context PDF::Hash, "each_key method" do
     h = PDF::Hash.new(filename)
 
     count = 0
-    h.each_key do 
+    h.each_key do
       count += 1
     end
     count.should eql(57)
@@ -154,7 +154,7 @@ context PDF::Hash, "each_value method" do
     h = PDF::Hash.new(filename)
 
     count = 0
-    h.each_value do 
+    h.each_value do
       count += 1
     end
     count.should eql(57)

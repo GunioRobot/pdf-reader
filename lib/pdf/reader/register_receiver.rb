@@ -64,7 +64,7 @@ class PDF::Reader
         match = idx and break if count == 0
       end
 
-      if match 
+      if match
         return callbacks[match, methods.size]
       else
         return nil

@@ -16,7 +16,7 @@ context "The PDF::Reader::Content class" do
     # the content class correctly recognises all instructions
     receiver = mock("receiver")
     receiver.should_receive(:begin_text_object).once             # BT
-    receiver.should_receive(:move_text_position).once            # Td 
+    receiver.should_receive(:move_text_position).once            # Td
     receiver.should_receive(:set_text_font_and_size).once        # Tf
     receiver.should_receive(:set_text_rendering_mode).once       # Tr
     receiver.should_receive(:show_text).once                     # Tj
@@ -27,7 +27,7 @@ context "The PDF::Reader::Content class" do
 
     # process the instructions
     content = PDF::Reader::Content.new(receiver, nil)
-    content.content_stream(instructions) 
+    content.content_stream(instructions)
   end
 
   specify "should send the correct callbacks when processing instructions containing 2 text blocks" do
@@ -36,7 +36,7 @@ context "The PDF::Reader::Content class" do
     # the content class correctly recognises all instructions
     receiver = mock("receiver")
     receiver.should_receive(:begin_text_object).twice            # BT
-    receiver.should_receive(:move_text_position).twice           # Td 
+    receiver.should_receive(:move_text_position).twice           # Td
     receiver.should_receive(:set_text_font_and_size).twice       # Tf
     receiver.should_receive(:set_text_rendering_mode).twice      # Tr
     receiver.should_receive(:show_text).twice                    # Tj
@@ -47,7 +47,7 @@ context "The PDF::Reader::Content class" do
 
     # process the instructions
     content = PDF::Reader::Content.new(receiver, nil)
-    content.content_stream(instructions) 
+    content.content_stream(instructions)
   end
 
   specify "should send the correct callbacks when processing instructions containing an inline image" do

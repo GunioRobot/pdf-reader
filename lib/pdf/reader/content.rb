@@ -314,7 +314,7 @@ class PDF::Reader
           contents.each do |content|
             obj = @xref.object(content)
             content_stream(obj, fonts)
-          end 
+          end
         end
 
         resources.pop if res

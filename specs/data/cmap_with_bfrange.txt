@@ -1,4 +1,4 @@
-/CIDInit /ProcSet findresource begin 12 dict begin begincmap /CIDSystemInfo << 
+/CIDInit /ProcSet findresource begin 12 dict begin begincmap /CIDSystemInfo <<
 /Registry (TT1+0) /Ordering (T42UV) /Supplement 0 >> def
 /CMapName /TT1+0 def
 /CMapType 2 def

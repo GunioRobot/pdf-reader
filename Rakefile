@@ -53,7 +53,7 @@ Rake::RDocTask.new("doc") do |rdoc|
   rdoc.options << "--inline-source"
 end
 
-# a gemspec for packaging this library 
+# a gemspec for packaging this library
 # RSpec files aren't included, as they depend on the PDF files,
 # which will make the gem filesize irritatingly large
 spec = Gem::Specification.new do |spec|

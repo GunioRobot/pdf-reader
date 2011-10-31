@@ -9,10 +9,10 @@
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
 # the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -37,26 +37,26 @@ module PDF
   # on receivers.
   #
   # = Parsing a file
-  #   
+  #
   #   PDF::Reader.file("somefile.pdf", receiver)
   #
   # = Parsing a String
-  # 
+  #
   # This is useful for processing a PDF that is already in memory
   #
   #   PDF::Reader.string(pdf_string, receiver)
   #
   # = Parsing an IO object
-  # 
+  #
   # This can be a useful alternative to the first 2 options in some situations
   #
   #   pdf = PDF::Reader.new
   #   pdf.parse(File.new("somefile.pdf"), receiver)
   #
   # = Parsing parts of a file
-  # 
+  #
   # Both PDF::Reader#file and PDF::Reader#string accept a 3 argument that specifies which
-  # parts of the file to process. By default, all options are enabled, so this can be useful 
+  # parts of the file to process. By default, all options are enabled, so this can be useful
   # to cut down processing time if you're only interested in say, metadata.
   #
   # As an example, the following call will disable parsing the contents of pages in the file,
@@ -65,7 +65,7 @@ module PDF
   #   PDF::Reader.new("somefile.pdf", receiver, {:metadata => true, :pages => false})
   #
   # Available options are currently:
-  #   
+  #
   #   :metadata
   #   :pages
   class Reader
